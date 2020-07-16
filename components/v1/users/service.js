@@ -7,10 +7,11 @@ const randomize = require("randomatic");
 // const config = require("../../../config/env/common");
 const deferrors = require("../../../libraries/error/define");
 const UserError = require("./error");
+const ServiceInterface = require("../interface/service");
 
-class Service {
-  constructor(componentModel) {
-    this.componentModel = componentModel;
+class Service extends ServiceInterface {
+  constructor(...arg) {
+    super(...arg);
   }
 
   // sign up
@@ -22,16 +23,10 @@ class Service {
 
   // sign in
   async signin(req) {
-    const options = { findOne: true, isInclude: false };
+    // const options = { findOne: true, isInclude: false };
     const { oauthid, token, serviceType } = req.body;
 
-    const user = await this.componentModel.findOne(
-      { oauthid, serviceType },
-      options
-    );
-    if (!user) {
-      throw new UserError({ code: deferrors.no_resource });
-    }
+    const user = await super.readService({ oauthid, serviceType }, { isInclude: false });
 
     // kakao token, id 인증 확인
     await kakao.verify(oauthid, token);
