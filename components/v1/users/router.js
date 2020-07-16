@@ -26,6 +26,7 @@ class UsersRouter extends InsertRouter {
   get addService() {
     return {
       'post ': 'signup',
+      'post /signupOrsignin': 'signupOrsignin',
       'delete /:uuid': 'signout',
       'post /signin': 'signin',
     };
@@ -37,6 +38,10 @@ class UsersRouter extends InsertRouter {
    * `run()` 함수 추가할 경우 아래와 같이 기술
    * }
    */
+
+  signupOrsignin(req, res, next) {
+    this._controller.signupOrsignin(req, res, next);
+  }
 
   signup(req, res, next) {
     this._controller.signup(req, res, next);

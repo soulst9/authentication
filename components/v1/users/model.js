@@ -6,7 +6,8 @@ class UserModel extends ModelAbstract {
   constructor(sequelizeModel) {
     super(sequelizeModel);
     this.orderby = ['name', 'asc'];
-    this.excludeAttributes = ['oauthId'];
+    this.excludeAttributes = ['oauthId', 'serviceType'];
+    this.notUpdateableFields = ['point'];
   }
 }
 

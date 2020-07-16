@@ -1,6 +1,8 @@
 
 exports.oauth2 = {
   KAKAO: 'kakao',
+  NAVER: 'naver',
+  APPLE: 'apple',
   FACEBOOK: 'facebook',
 }
 

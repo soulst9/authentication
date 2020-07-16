@@ -10,6 +10,17 @@ class Controller extends ControllerInterface {
     this._userService = new Service(this.componentModel);
   }
 
+  async signupOrsignin(req, res, next) {
+    try {
+      console.log('signUpOrsignIn controller');
+      const result = await this._userService.signupOrsignin(req.body);
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+
   async signup(req, res, next) {
     try {
       console.log('sigup controller');
