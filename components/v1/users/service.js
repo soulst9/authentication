@@ -30,15 +30,16 @@ class Service extends ServiceInterface {
     const count = await super.countService({ oauthId, serviceType });
     let user = {};
     if (count == 0) {     // 신규 회원
-      item.point = 0;
       item.code = randomize("Aa0", 8);
 
       user = await super.createService(item, {
         point: 0,
         code: randomize("Aa0", 8),
       });
+      user.isNew = true;
     } else {              // 기 가입 회원
       user = await super.readService({ oauthId, serviceType }, { isInclude: false }); 
+      user.isNew = false;
     }
 
     // 카카오 토큰 검증
