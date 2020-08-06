@@ -47,8 +47,7 @@ class Service extends ServiceInterface {
 
     const payload = user.dataValues;
     const accessToken = createToken(payload);
-    const result = { accessToken, ...payload };
-    return { result };
+    return { accessToken, ...payload };
   }
 
   // sign up
@@ -69,10 +68,11 @@ class Service extends ServiceInterface {
     // * oauth2 연동 결과 log 남기기
     // log table 필요?
 
-    const payload = user.dataValues;
+    const { uuid, oauthType, name, gender, email, point, code , isSignout, createdAt } = user.dataValues;
+    const payload = { uuid, oauthType, name, gender, email, point, code , isSignout, createdAt };
     const accessToken = createToken(payload);
-    const result = { accessToken, ...payload };
-    return { result };
+    // const result = { accessToken, ...payload };
+    return { accessToken, ...payload };
   }
 
   // 회원 탈퇴
